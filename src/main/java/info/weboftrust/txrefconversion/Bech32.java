@@ -85,7 +85,7 @@ public class Bech32 {
 
 		for (byte b : values) {
 			byte top = (byte)(chk >> 0x19);
-			chk = b ^ ((chk & 0x1ffffff) << 5);
+			chk = ((0xff) & b) ^ ((chk & 0x1ffffff) << 5);
 			for (int i = 0; i < 5; i++) {
 				chk ^= ((top >> i) & 1) == 1 ? GENERATORS[i] : 0;
 			}
